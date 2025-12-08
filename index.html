@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Web Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="calculator-container">
+        <h1>✨ Multi-Mode Calculator</h1>
+
+        <div class="tabs">
+            <button class="tab-button active" onclick="showPanel(0)">Standard/Scientific</button>
+            <button class="tab-button" onclick="showPanel(1)">Unit Converter</button>
+            <button class="tab-button" onclick="showPanel(2)">Currency Converter</button>
+        </div>
+
+        <div class="tab-panel active">
+            <div class="display">
+                <input type="text" id="calc-display" value="0" disabled>
+            </div>
+            <div class="buttons">
+                <button class="scientific" onclick="appendInput('Math.sqrt(')">√</button>
+                <button class="scientific" onclick="appendInput('Math.pow(')">xʸ</button>
+                <button class="scientific" onclick="appendInput('Math.sin(')">sin</button>
+                <button class="scientific" onclick="appendInput('Math.cos(')">cos</button>
+
+                <button class="clear" onclick="clearDisplay()">C</button>
+                <button onclick="deleteLast()">DEL</button>
+                <button onclick="appendInput('/')">÷</button>
+                <button onclick="appendInput('*')">×</button>
+
+                <button onclick="appendInput('7')">7</button>
+                <button onclick="appendInput('8')">8</button>
+                <button onclick="appendInput('9')">9</button>
+                <button onclick="appendInput('-')">-</button>
+
+                <button onclick="appendInput('4')">4</button>
+                <button onclick="appendInput('5')">5</button>
+                <button onclick="appendInput('6')">6</button>
+                <button onclick="appendInput('+')">+</button>
+
+                <button onclick="appendInput('1')">1</button>
+                <button onclick="appendInput('2')">2</button>
+                <button onclick="appendInput('3')">3</button>
+                <button onclick="appendInput('.')">.</button>
+
+                <button onclick="toggleScientific()">Sci</button>
+                <button onclick="appendInput('0')">0</button>
+                <button class="equal" onclick="calculateResult()">=</button>
+            </div>
+        </div>
+
+        <div class="tab-panel">
+            <h2>📏 Unit Converter</h2>
+            <div class="converter-group">
+                <label for="unit-category">Select Category:</label>
+                <select id="unit-category" onchange="populateUnits()">
+                    <option value="mass">Mass (kg to g)</option>
+                    <option value="length">Length (m to cm)</option>
+                </select>
+            </div>
+            <div class="converter-group">
+                <input type="number" id="unit-input" placeholder="Enter value">
+                <select id="unit-from"></select>
+                <span>&rarr;</span>
+                <select id="unit-to"></select>
+            </div>
+            <button onclick="convertUnit()">Convert Unit</button>
+            <div class="result-display" id="unit-result">Result: </div>
+        </div>
+
+        <div class="tab-panel">
+            <h2>💰 Currency Converter</h2>
+            <p class="note">**Note:** Live rate conversion requires a real API key. This example uses *mock* rates.</p>
+            <div class="converter-group">
+                <input type="number" id="currency-input" placeholder="Enter amount">
+                <select id="currency-from">
+                    <option value="USD">USD</option>
+                    <option value="EUR">EUR</option>
+                    <option value="INR">INR</option>
+                </select>
+                <span>&rarr;</span>
+                <select id="currency-to">
+                    <option value="INR">INR</option>
+                    <option value="USD">USD</option>
+                    <option value="EUR">EUR</option>
+                </select>
+            </div>
+            <button onclick="convertCurrency()">Convert Currency</button>
+            <div class="result-display" id="currency-result">Result: </div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+    <script src="converter.js"></script>
+</body>
+</html>
